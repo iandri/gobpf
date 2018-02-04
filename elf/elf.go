@@ -360,7 +360,7 @@ func elfReadMaps(file *elf.File, params map[string]SectionParams) (map[string]*M
 		if err != nil {
 			return nil, err
 		}
-		if len(data) != C.sizeof_struct_bpf_map_def {
+		if len(data) > C.sizeof_struct_bpf_map_def {
 			return nil, fmt.Errorf("only one map with size %d bytes allowed per section (check bpf_map_def), size: %d", C.sizeof_struct_bpf_map_def, len(data))
 		}
 
