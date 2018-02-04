@@ -361,7 +361,7 @@ func elfReadMaps(file *elf.File, params map[string]SectionParams) (map[string]*M
 			return nil, err
 		}
 		if len(data) != C.sizeof_struct_bpf_map_def {
-			return nil, fmt.Errorf("only one map with size %d bytes allowed per section (check bpf_map_def)", C.sizeof_struct_bpf_map_def)
+			return nil, fmt.Errorf("only one map with size %d bytes allowed per section (check bpf_map_def), size: %d", C.sizeof_struct_bpf_map_def, len(data))
 		}
 
 		name := strings.TrimPrefix(section.Name, "maps/")
